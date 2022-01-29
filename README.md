@@ -36,3 +36,6 @@ API 2: TBD
 7 - Have a quality README
     (with unique name, description, technologies used, screenshot, and link to deployed application).
 
+/--------------------------------------------------------------------------------------------/
+/-                                    Presentation Requirements                             -/
+/--------------------------------------------------------------------------------------------/
