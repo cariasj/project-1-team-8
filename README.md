@@ -9,6 +9,7 @@ Idea:
 - TBD
 
     - Suggestion 1: building a music player (Yasmeen)
+    - Suggestion 2: QR Code reader (Ana)
 
 CSS Framework (not Bootstrap):
 
