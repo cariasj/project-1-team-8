@@ -4,6 +4,12 @@
 /-                                    Pending Definitions:                                  -/
 /--------------------------------------------------------------------------------------------/
 
+Idea:
+
+- TBD
+
+    - Suggestion 1: building a music player (Yasmeen)
+
 CSS Framework (not Bootstrap):
 
 - TBD
@@ -39,3 +45,7 @@ API 2: TBD
 /--------------------------------------------------------------------------------------------/
 /-                                    Presentation Requirements                             -/
 /--------------------------------------------------------------------------------------------/
+
+Link to Presentation File:
+
+https://drive.google.com/drive/folders/146BbwUJWkR-aSOI9ueoks3NXiugB0gkK?usp=sharing
