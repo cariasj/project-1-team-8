@@ -3,22 +3,30 @@
 /--------------------------------------------------------------------------------------------/
 /-                                    Pending Definitions:                                  -/
 /--------------------------------------------------------------------------------------------/
-
-Idea:
-
-- TBD
+Idea suggestions:
 
     - Suggestion 1: building a music player (Yasmeen)
-    - Suggestion 2: QR Code reader (Ana)
+    - Suggestion 2: QR Code reader (Ana) - Selected
+
+Idea Selected:
+
+    - Suggestion 2: QR Code Generator
+
+Scope: Takes input from user on:
+    Location: User inputs his URL
+    Identifier: User created unique ID - identifying who is the creator & time/date of creation
+
+App generates QR code, prints on screen, and saves QR code and its data on Client Side.
+    
 
 CSS Framework (not Bootstrap):
 
-- TBD
+- Materialize (based on research it is created with CSS, JS, and HTML and suited for less experienced developers)
 
 Use at least two server-side APIs.
 
-API 1: TBD 
-API 2: TBD
+API 1: TBD (not defined - need to do further research on good matches for this proejct)
+API 2: TBD (not defined - need to do further research on good matches for this proejct)
 
 /--------------------------------------------------------------------------------------------/
 /-                                    Acceptance Criteria:                                  -/
