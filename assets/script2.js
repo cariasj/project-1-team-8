@@ -1,7 +1,7 @@
 const clientId = '3f914455b6564cae8175fea3e954fe95';
 const clientSecret = '978bf3a93ce04a0a8c215560fe5cdd4b';
 
-/*
+
 const authToken = async () => {
 
 
@@ -18,10 +18,10 @@ const authToken = async () => {
     const result = await axios.post('https://accounts.spotify.com/api/token/', config)
     console.log(result);
 }
-authToken();   */
+authToken();   
 
 
-
+/*
 const getAuth = async () => {
 
   
