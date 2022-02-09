@@ -17,6 +17,7 @@ const _getToken = async () => {
     const data = await result.json();
     console.log(data.access_token);
     token = data.access_token;
+    _getGenres();
         
     }
     
@@ -35,5 +36,5 @@ const _getGenres = async () => {
 
 
 
+
 _getToken();
-_getGenres();
