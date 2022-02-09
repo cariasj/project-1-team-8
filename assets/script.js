@@ -1,11 +1,9 @@
-const clientId = '3f914455b6564cae8175fea3e954fe95';
-const clientSecret = '978bf3a93ce04a0a8c215560fe5cdd4b';
+const clientId = '5202aa42e7224b6a99e6a7aeb7c1a721';
+const clientSecret = '049f97e36c0946d3acdb50ca7561fabc';
 
 /*
 const authToken = async () => {
-
-
-    const config = {
+  const config = {
        
         method: "POST",
         headers: {
@@ -20,10 +18,6 @@ const authToken = async () => {
 }
 authToken();   */
 
-const clientId = '8b4a304cdf6a455696637805b9decb95';
-const clientSecret = '1e098b0cf1844d9aabf0166fcd361699';
-
-
 const getToken = async () => {
 
     const result = await fetch('https://accounts.spotify.com/api/token', {
@@ -35,26 +29,25 @@ const getToken = async () => {
         body: 'grant_type=client_credentials'
     });
     
-    const data = await result.json();
-    console.log(data);
-    return data.access_token;
+    const dataTok = await result.json();
+    console.log(dataTok);
+    return dataTok.access_token;
 }
 
-const getGenres = async (token) => {
-
+ const getGenres = async () => {
+  const spotifyToken = await getToken();
     const result = await fetch(`https://api.spotify.com/v1/browse/categories?locale=sv_US`, {
         method: 'GET',
-        headers: { 'Authorization' : 'Bearer ' + token}
+        headers: { 'Authorization' : 'Bearer' + spotifyToken}
     });
-
+    console.log(result)
     const data = await result.json();
     console.log(data);
-    return data.categories.items;
+    //return data.categories.items;
 }
 
-getToken();
+//var SpotifyToken = getToken();
 getGenres();
-
 
 /*
 const getAuth = async () => {
