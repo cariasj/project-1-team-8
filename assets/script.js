@@ -46,7 +46,7 @@ const _getToken = async () => {
     const data = await result.json();
 //  console.log(data.access_token);
     token = data.access_token;
-    _getGenres();
+
     _getArtists();
     }
     
@@ -145,9 +145,9 @@ var allocateImage = function (img) {
 $('.genre-selection').each(function() { 
     $(".genre-section").on("click", function assignGenre() {
     selectedGenre = $(this).attr('id');
-    console.log(this.id);
-    console.log(selectedGenre); 
-    console.log(this);
+    console.log(selectedGenre);
+    _getArtists();
+    _getTracks();
 });
 })
 
