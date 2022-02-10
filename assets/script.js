@@ -1,24 +1,11 @@
-const clientId = '5202aa42e7224b6a99e6a7aeb7c1a721';
-const clientSecret = '049f97e36c0946d3acdb50ca7561fabc';
+const clientId = '1dcbc3f0e7104a19991d59bf1d79366e';
+const clientSecret = '384a4b3745b542fea7f47ab7180eede9';
+var token = "";
+var genres = [];
+var selectedGenre = "rock";
+var artistID = "";
 
-/*
-const authToken = async () => {
-  const config = {
-       
-        method: "POST",
-        headers: {
-        'Accept' : 'application/json',
-        'Content-Type' : 'application/x-www-form-urlencoded', 
-        'Authorization' : 'Basic ' + btoa(clientId + ':' + clientSecret) 
-        },
-        body: 'grant_type=client_credentials'
-    }
-    const result = await axios.post('https://accounts.spotify.com/api/token/', config)
-    console.log(result);
-}
-authToken();   */
-
-const getToken = async () => {
+const _getToken = async () => {
 
     const result = await fetch('https://accounts.spotify.com/api/token', {
         method: 'POST',
@@ -28,55 +15,66 @@ const getToken = async () => {
         },
         body: 'grant_type=client_credentials'
     });
+        // console.log(result.access_token);
+    const data = await result.json();
+    console.log(data.access_token);
+    token = data.access_token;
+    _getGenres();
+    _getArtists();
+    }
     
-    const dataTok = await result.json();
-    console.log(dataTok);
-    return dataTok.access_token;
-}
+const _getGenres = async () => {
 
- const getGenres = async () => {
-  const spotifyToken = await getToken();
     const result = await fetch(`https://api.spotify.com/v1/browse/categories?locale=sv_US`, {
         method: 'GET',
-        headers: { 'Authorization' : 'Bearer' + spotifyToken}
+        headers: { 'Authorization' : 'Bearer ' + token}
     });
-    console.log(result)
+        
     const data = await result.json();
-    console.log(data);
-    //return data.categories.items;
+    // console.log(data.categories.items);
+    return data.categories.items;
 }
 
-//var SpotifyToken = getToken();
-getGenres();
+const _getArtists = async (artistSelected) => {
 
-/*
-const getAuth = async () => {
+    const result = await fetch('https://api.spotify.com/v1/search?q=genre:' + selectedGenre +'*&type=artist&market=US&limit=10', {
+        method: 'GET',
+        headers: {'Authorization' : 'Bearer ' + token},
+        header: 'Content-Type : application/json' 
+    });
+    const data = await result.json();
+    console.log(data.artists.items);
+    artistID = data.artists.items[artistSelected].id;
+    console.log(artistID);
+    _getTracks();
+    return data.artists.items;
+    
+}
 
-  
-  const headers = {
-    headers: {
-      Accept: 'application/json',
-      'Content-Type': 'application/x-www-form-urlencoded',
-    },
-    auth: {
-      username: clientId,
-      password: clientSecret,
-    },
-  };
-  const data = {
-    grant_type: 'client_credentials',
-  };
+const _getTracks = async () => {
+    const result = await fetch('https://api.spotify.com/v1/search?q=genre:' + selectedGenre + '*&type=track&market=US&limit=10', {
+        methid: 'GET',
+        headers: {'Authorization' : 'Bearer ' + token},
+        header: 'Content-Type : application/json' 
+    });
+    const data = await result.json();
+    console.log(data.tracks.items);
+    return data.tracks.items;
+}
 
-  try {
-    const response = await axios.post(
-      'https://accounts.spotify.com/api/token',
-      
-      headers
-    );
-    console.log(response.data.access_token);
-    return response.data.access_token;
-  } catch (error) {
-    console.log(error);
-  }
-  getAuth();
-}; */
+const _getAlbums = async () => {
+    const result = await fetch('https://api.spotify.com/v1/artists/' + artistID + '/albums?market=US&limit=3', {
+        methid: 'GET',
+        headers: {'Authorization' : 'Bearer ' + token},
+        header: 'Content-Type : application/json' 
+    });
+    const data = await result.json();
+    console.log(data);
+    return data;
+}
+_getToken();
+
+axios.get ('http://api.qrserver.com/v1/create-qr-code/?data=HelloWorld!&size=100x100')
+.then ( result => {
+        console.log (result);
+})
