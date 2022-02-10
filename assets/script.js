@@ -5,7 +5,7 @@
 const clientId = '03d8e475016f40709515ff7168828110';
 const clientSecret = 'a5e76637ec5544bb88cdc130e089668d';
 var token = "";
-var genres = [];
+
 var selectedGenre = "rock"; // needs to be replaced to clicked genre
 var artistID = "";
 var top10ArtistsNames = [];
@@ -58,7 +58,7 @@ const _getGenres = async () => {
     });
         
     const data = await result.json();
-    console.log(data.categories.items);
+    //console.log(data.categories.items);
     return data.categories.items;
 }
 
@@ -118,6 +118,7 @@ _getToken();
 /*-----------------------------------------------------------------------------------------------------                        
 -                                           POPULATE HTML                    
 -----------------------------------------------------------------------------------------------------*/
+
 var classicRockDivEl = document.querySelector('#classic-rock-artists');
 var hiphopDivEl = document.querySelector('#hiphop-artists');
 var jazzDivEl = document.querySelector('#jazz-artists');
@@ -137,9 +138,6 @@ var allocateImage = function (img) {
 
 
 
-
-var clickEventHandler = {
-    
-}
-
-document.getElementById('')
+/*-----------------------------------------------------------------------------------------------------                        
+-                                           GENRE SELECTION                    
+-----------------------------------------------------------------------------------------------------*/
