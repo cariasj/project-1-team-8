@@ -4,6 +4,7 @@ var token = "";
 var genres = [];
 var selectedGenre = "rock";
 var artistID = "";
+var imgSrc = "";
 
 const _getToken = async () => {
 
@@ -82,7 +83,11 @@ const qrCode = async () => {
   });
   
   console.log(result.url);
-  
+   var imgSrc = result.url
+   document.getElementById("spotifyImg").src = imgSrc;
 }
 qrCode();
+
+
+
 //}
