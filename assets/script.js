@@ -53,7 +53,7 @@ const _getArtists = async (artistSelected) => {
 
 const _getTracks = async () => {
     const result = await fetch('https://api.spotify.com/v1/search?q=genre:' + selectedGenre + '*&type=track&market=US&limit=10', {
-        methid: 'GET',
+        method: 'GET',
         headers: {'Authorization' : 'Bearer ' + token},
         header: 'Content-Type : application/json' 
     });
@@ -64,7 +64,7 @@ const _getTracks = async () => {
 
 const _getAlbums = async () => {
     const result = await fetch('https://api.spotify.com/v1/artists/' + artistID + '/albums?market=US&limit=3', {
-        methid: 'GET',
+        method: 'GET',
         headers: {'Authorization' : 'Bearer ' + token},
         header: 'Content-Type : application/json' 
     });
@@ -74,7 +74,15 @@ const _getAlbums = async () => {
 }
 _getToken();
 
-axios.get ('http://api.qrserver.com/v1/create-qr-code/?data=HelloWorld!&size=100x100')
-.then ( result => {
-        console.log (result);
-})
+//function createQrCode() {
+var spotifyUrl = ""
+const qrCode = async () => {
+  const result = await fetch('http://api.qrserver.com/v1/create-qr-code/?data="' + spotifyUrl + '"!&size=100x100', {
+      method: 'GET',
+  });
+  
+  console.log(result.url);
+  
+}
+qrCode();
+//}
