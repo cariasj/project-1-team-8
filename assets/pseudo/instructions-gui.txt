@@ -15,3 +15,15 @@ Pending front-end:
 When clicking on a title, expand to show QR Code individual to that title, and addiitonal title details (artist, play-count, etc..)
 
 carousel at the bottom should be a automatic animation of boxes sliding horizontally, as per mockup:
+
+list of Genres:
+
+- classic rock
+- hiphop
+- jazz
+- classical-music
+- edm
+- pop
+- rap
+- party
+- alternative
