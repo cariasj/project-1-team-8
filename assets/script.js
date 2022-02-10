@@ -1,11 +1,18 @@
+/*-----------------------------------------------------------------------------------------------------                        
+-                                           GLOBAL VARIABLES                  
+-----------------------------------------------------------------------------------------------------*/
+
 const clientId = '03d8e475016f40709515ff7168828110';
 const clientSecret = 'a5e76637ec5544bb88cdc130e089668d';
 var token = "";
 var genres = [];
-var selectedGenre = "rock";
+var selectedGenre = "rock"; // needs to be replaced to clicked genre
 var artistID = "";
-var temporary ='';
-
+var top10ArtistsNames = [];
+var top10ArtistsImages = [];
+var top10ArtistsPopularity = [];
+var top10ArtistsGenre = [];
+var top10ArtistsLink = [];
 
 $(document).ready(function(){
     $('.button-collapse').sideNav({
@@ -51,7 +58,7 @@ const _getGenres = async () => {
     });
         
     const data = await result.json();
-    // console.log(data.categories.items);
+    console.log(data.categories.items);
     return data.categories.items;
 }
 
@@ -64,10 +71,23 @@ const _getArtists = async (artistSelected) => {
     });
     const data = await result.json();
     console.log(data.artists.items);
-    temporary = data.artists.items;
-    artistID = data.artists.items[0].id;
-    console.log(artistID);
-    _getTracks();
+    //artistID = data.artists.items[0].id;
+    for (i=0; i<10; i++) {
+
+        top10ArtistsNames[i] = data.artists.items[i].name;
+        top10ArtistsImages[i] = data.artists.items[i].images[0].url;
+        top10ArtistsPopularity[i] = data.artists.items[i].popularity;
+        top10ArtistsGenre[i] = data.artists.items[i].genres[0];
+        top10ArtistsLink[i] = data.artists.items[i].external_urls.spotify;
+        
+    }
+    console.log(top10ArtistsNames);   
+    console.log(top10ArtistsImages);
+    console.log(top10ArtistsPopularity);
+    console.log(top10ArtistsGenre);
+    console.log(top10ArtistsLink);
+    await _getTracks();
+    allocateImage(top10ArtistsImages[0]);
     return data.artists.items;
     
 }
@@ -94,3 +114,32 @@ const _getAlbums = async () => {
     return data;
 }
 _getToken();
+
+/*-----------------------------------------------------------------------------------------------------                        
+-                                           POPULATE HTML                    
+-----------------------------------------------------------------------------------------------------*/
+var classicRockDivEl = document.querySelector('#classic-rock-artists');
+var hiphopDivEl = document.querySelector('#hiphop-artists');
+var jazzDivEl = document.querySelector('#jazz-artists');
+var classicalMusicDivEl = document.querySelector('#classical-music-artists');
+var edmDivEl = document.querySelector('#edm-artists');
+var popDivEl = document.querySelector('#pop-artists');
+var rapDivEl = document.querySelector('#rap-artists');
+var partyDivEl = document.querySelector('#party-artists');
+var alternativeDivEl = document.querySelector('#alternative-artists');
+
+var allocateImage = function (img) {
+    var imgEl = document.createElement('img');
+    imgEl.src = img;
+    console.log(imgEl);
+    classicRockDivEl.appendChild(imgEl);
+}
+
+
+
+
+var clickEventHandler = {
+    
+}
+
+document.getElementById('')
