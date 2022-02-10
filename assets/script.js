@@ -1,9 +1,10 @@
-const clientId = '1dcbc3f0e7104a19991d59bf1d79366e';
-const clientSecret = '384a4b3745b542fea7f47ab7180eede9';
+const clientId = '03d8e475016f40709515ff7168828110';
+const clientSecret = 'a5e76637ec5544bb88cdc130e089668d';
 var token = "";
 var genres = [];
 var selectedGenre = "rock";
 var artistID = "";
+var temporary ='';
 
 
 $(document).ready(function(){
@@ -17,14 +18,12 @@ $(document).ready(function(){
     }
   );
       $('.parallax').parallax();
-     
-       
-       
- 
-          $('#demo-carousel').carousel();
-     
-      
+          $('#demo-carousel').carousel();   
 });
+
+/*-----------------------------------------------------------------------------------------------------                        
+-                                           FETCH FUNCTIONS                   
+-----------------------------------------------------------------------------------------------------*/
 
 const _getToken = async () => {
 
@@ -38,7 +37,7 @@ const _getToken = async () => {
     });
         // console.log(result.access_token);
     const data = await result.json();
-    console.log(data.access_token);
+//  console.log(data.access_token);
     token = data.access_token;
     _getGenres();
     _getArtists();
@@ -65,7 +64,8 @@ const _getArtists = async (artistSelected) => {
     });
     const data = await result.json();
     console.log(data.artists.items);
-    artistID = data.artists.items[artistSelected].id;
+    temporary = data.artists.items;
+    artistID = data.artists.items[0].id;
     console.log(artistID);
     _getTracks();
     return data.artists.items;
