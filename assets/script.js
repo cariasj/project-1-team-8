@@ -6,7 +6,7 @@ const clientId = '03d8e475016f40709515ff7168828110';
 const clientSecret = 'a5e76637ec5544bb88cdc130e089668d';
 var token = "";
 
-var selectedGenre = "rock"; // needs to be replaced to clicked genre
+var selectedGenre = "hip-hop"; // needs to be replaced to clicked genre
 var artistID = "";
 var top10ArtistsNames = [];
 var top10ArtistsImages = [];
@@ -62,7 +62,7 @@ const _getGenres = async () => {
     return data.categories.items;
 }
 
-const _getArtists = async (artistSelected) => {
+const _getArtists = async () => {
 
     const result = await fetch('https://api.spotify.com/v1/search?q=genre:' + selectedGenre +'*&type=artist&market=US&limit=10', {
         method: 'GET',
@@ -92,7 +92,7 @@ const _getArtists = async (artistSelected) => {
     
 }
 
-const _getTracks = async () => {
+const _getTracks = async (selectedGenre) => {
     const result = await fetch('https://api.spotify.com/v1/search?q=genre:' + selectedGenre + '*&type=track&market=US&limit=10', {
         methid: 'GET',
         headers: {'Authorization' : 'Bearer ' + token},
@@ -137,7 +137,30 @@ var allocateImage = function (img) {
 }
 
 
-
 /*-----------------------------------------------------------------------------------------------------                        
 -                                           GENRE SELECTION                    
 -----------------------------------------------------------------------------------------------------*/
+
+
+$('.genre-selection').each(function() { 
+    $(".genre-section").on("click", function assignGenre() {
+    selectedGenre = $(this).attr('id');
+    console.log(this.id);
+    console.log(selectedGenre); 
+    console.log(this);
+});
+})
+
+    // var clickedEl = document.addEventListener('click', function assignGenre() {
+    // selectedGenre = $('.genre-section').attr('id');
+    // console.log(this.id);
+    // console.log(selectedGenre);
+
+    // var currentID = this.id;
+    // console.log(currentID);
+    // $(this).html(currentID);
+
+
+
+
+//var rockDivButton = document.querySelector('')
