@@ -1,4 +1,10 @@
+const clientId = '1dcbc3f0e7104a19991d59bf1d79366e';
+const clientSecret = '384a4b3745b542fea7f47ab7180eede9';
+var token = "";
 var genres = [];
+var selectedGenre = "rock";
+var artistID = "";
+
 
 $(document).ready(function(){
     $('.button-collapse').sideNav({
@@ -20,12 +26,6 @@ $(document).ready(function(){
       
 });
 
-
-const clientId = '03d8e475016f40709515ff7168828110';
-const clientSecret = 'a5e76637ec5544bb88cdc130e089668d';
-var token = "";
-
-
 const _getToken = async () => {
 
     const result = await fetch('https://accounts.spotify.com/api/token', {
@@ -41,7 +41,7 @@ const _getToken = async () => {
     console.log(data.access_token);
     token = data.access_token;
     _getGenres();
-        
+    _getArtists();
     }
     
 const _getGenres = async () => {
@@ -52,12 +52,45 @@ const _getGenres = async () => {
     });
         
     const data = await result.json();
-    console.log(data);
-
+    // console.log(data.categories.items);
     return data.categories.items;
 }
 
+const _getArtists = async (artistSelected) => {
 
+    const result = await fetch('https://api.spotify.com/v1/search?q=genre:' + selectedGenre +'*&type=artist&market=US&limit=10', {
+        method: 'GET',
+        headers: {'Authorization' : 'Bearer ' + token},
+        header: 'Content-Type : application/json' 
+    });
+    const data = await result.json();
+    console.log(data.artists.items);
+    artistID = data.artists.items[artistSelected].id;
+    console.log(artistID);
+    _getTracks();
+    return data.artists.items;
+    
+}
 
+const _getTracks = async () => {
+    const result = await fetch('https://api.spotify.com/v1/search?q=genre:' + selectedGenre + '*&type=track&market=US&limit=10', {
+        methid: 'GET',
+        headers: {'Authorization' : 'Bearer ' + token},
+        header: 'Content-Type : application/json' 
+    });
+    const data = await result.json();
+    console.log(data.tracks.items);
+    return data.tracks.items;
+}
 
+const _getAlbums = async () => {
+    const result = await fetch('https://api.spotify.com/v1/artists/' + artistID + '/albums?market=US&limit=3', {
+        methid: 'GET',
+        headers: {'Authorization' : 'Bearer ' + token},
+        header: 'Content-Type : application/json' 
+    });
+    const data = await result.json();
+    console.log(data);
+    return data;
+}
 _getToken();
