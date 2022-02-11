@@ -8,9 +8,10 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="x-ua-compatible" content="ie=edge"> 
-    <title>Give me Music!</title>
+    <script async src="https://kit.fontawesome.com/6cc05e1e8e.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
     <link rel="stylesheet" href="./assets/style.css">
+    <title>Give me Music!</title>
   </head>
 
   <body>
@@ -48,55 +49,55 @@
     <div class="row">
 
       <div class="col">
-        <div class="card-panel center green">
+        <div class="card-panel center green genre-selector" id="rock-box">
           <a><span class="white-text">Rock</span></a>
         </div>
       </div> 
 
       <div class="col">
-        <div class="card-panel center green">
+        <div class="card-panel center green genre-selector" id="hiphop-box">
+          <a><span class="white-text">HipHop</span></a>
+        </div>
+      </div> 
+
+      <div class="col">
+        <div class="card-panel center green genre-selector" id="jazz-box">
           <a><span class="white-text">Jazz</span></a>
         </div>
       </div> 
 
       <div class="col">
-        <div class="card-panel center green">
-          <a><span class="white-text">Jazz</span></a>
-        </div>
-      </div> 
-
-      <div class="col">
-        <div class="card-panel center green">
+        <div class="card-panel center green genre-selector" id="classical-music-box">
           <a><span class="white-text">Classical Music</span></a>
         </div>
       </div> 
 
       <div class="col">
-        <div class="card-panel center green">
+        <div class="card-panel center green genre-selector" id="edm-box">
           <a><span class="white-text">EDM</span></a>
         </div>
       </div> 
 
       <div class="col">
-        <div class="card-panel center green">
+        <div class="card-panel center green genre-selector" id="pop-box">
           <a><span class="white-text">Pop</span></a>
         </div>
       </div> 
 
       <div class="col">
-        <div class="card-panel center green">
+        <div class="card-panel center green genre-selector" id="rap-box">
           <a><span class="white-text">Rap</span></a>
         </div>
       </div> 
 
       <div class="col">
-        <div class="card-panel center green">
+        <div class="card-panel center green genre-selector" id="party-box">
           <a><span class="white-text">Party</span></a>
         </div>
       </div> 
 
       <div class="col">
-        <div class="card-panel center green">
+        <div class="card-panel center green genre-selector" id="alternative-box">
           <a><span class="white-text">Alternative</span></a>
         </div>
       </div> 
@@ -108,12 +109,10 @@
 -                                       Top 10 Artists Carousel 
 ------------------------------------------------------------------------------------------->
     <section class="selectgenre">
-      <h2>Give Me 10 Artists...</h2>
+      <h2>Give Me the Top 10 Artists</h2>
       <div class="wrapper">
         <div class="carrouselwrapper" id="artistscarousel">
-
             <div class="genrecontainer" id="classic-rock-artists">
-        
             </div>
             <div class="genrecontainer" id="hiphop-artists">
               <img src="https://via.placeholder.com/300x125.png" />
@@ -148,48 +147,49 @@
 <!----------------------------------------------------------------------------------------- 
 -                                       Top 10 Tracks Carousel
 ------------------------------------------------------------------------------------------->
+
     <section class="selectgenre">
-      <h2>Give Me 10 Tracks...</h2>
+      <h2>Give Me the Top 10 Tracks</h2>
       <div class="wrapper">
         <div class="carrouselwrapper" id="trackscarousel">
 
-          <div class="genrecontainer" id="genre1tracks">
-           
-              <img src="https://via.placeholder.com/300x125.png"  />
-              <p>POP</p>
+          <div class="genrecontainertracks" id="genre1tracks">
+              <img id="test" src="https://via.placeholder.com/300x125.png"/>
+              
+              
+             </div>
              
-          </div>
 
-          <div class="genrecontainer" id="genre2tracks">
+          <div class="genrecontainertracks" id="genre2tracks">
               <img src="https://via.placeholder.com/300x125.png" />
               <p>ROCK</p>
           </div>
 
-          <div class="genrecontainer" id="genre3tracks">
+          <div class="genrecontainertracks" id="genre3tracks">
               <img src="https://via.placeholder.com/300x125.png" />
           </div>
 
-          <div class="genrecontainer" id="genre4tracks">
+          <div class="genrecontainertracks" id="genre4tracks">
               <img src="https://via.placeholder.com/300x125.png" />
           </div>
 
-          <div class="genrecontainer" id="genre5tracks">
+          <div class="genrecontainertracks" id="genre5tracks">
               <img src="https://via.placeholder.com/300x125.png" />
           </div>
 
-          <div class="genrecontainer" id="genre6tracks">
+          <div class="genrecontainertracks" id="genre6tracks">
               <img src="https://via.placeholder.com/300x125.png" />
           </div>
 
-          <div class="genrecontainer" id="genre7tracks">
+          <div class="genrecontainertracks" id="genre7tracks">
               <img src="https://via.placeholder.com/300x125.png" />
           </div>
 
-          <div class="genrecontainer" id="genre8tracks">
+          <div class="genrecontainertracks" id="genre8tracks">
               <img src="https://via.placeholder.com/300x125.png" />
           </div>
 
-          <div class="genrecontainer" id="genre9tracks">
+          <div class="genrecontainertracks" id="genre9tracks">
               <img src="https://via.placeholder.com/300x125.png" />
           </div>
 
@@ -201,141 +201,7 @@
 -                              MODAL - After clicking ona Carousel Icon
 ------------------------------------------------------------------------------------------->
 
-    <div class="row">
-      <div class="col xl3 l3 m1"></div>
-      <div class="col xl6 l6 m11">
-        <ul class="collection">
-          <li class="collection-item avatar">
-            <img src="./assets/images/cardi.jpg" alt="" class="circle">
-            <span class="title">Title</span>
-            <p>First Line <br>
-            Second Line
-            </p>
-            <a href="#!" class="secondary-content"><i class="material-icons"></i></a>
-          </li>
 
-          <li class="collection-item avatar">
-            <img src="./assets/images/linkinpark.jpg" class="circle">
-            <span class="title">Title</span>
-            <p>First Line<br>Second Line</p>
-            <a href="#!" class="secondary-content"><i class="material-icons"></i></a>
-          </li>
-
-          <li class="collection-item avatar">
-            <img src="./assets/images/immanuel.jpg" class="circle">
-            <span class="title">Title</span>
-            <p>First Line<br>Second Line</p>
-            <a href="#!" class="secondary-content"><i class="material-icons"></i></a>
-          </li>
-
-          <li class="collection-item avatar">
-            <img src="./assets/images/thomasrhett.jpg" class="circle">
-            <span class="title">Title</span>
-            <p>First Line<br>Second Line</p>
-            <a href="#!" class="secondary-content"><i class="material-icons"></i></a>
-          </li>
-
-          <li class="collection-item avatar">
-            <img src="./assets/images/immanuel.jpg" class="circle">
-            <span class="title">Title</span>
-            <p>First Line<br>Second Line</p>
-          </li>
-
-          <li class="collection-item avatar">
-            <img src="./assets/images/immanuel.jpg" class="circle">
-            <span class="title">Title</span>
-            <p>First Line<br>Second Line</p>
-          </li>
-
-          <li class="collection-item avatar">
-            <img src="./assets/images/immanuel.jpg" class="circle">
-            <span class="title">Title</span>
-            <p>First Line<br>Second Line</p>
-          </li>
-
-          <li class="collection-item avatar">
-            <img src="./assets/images/immanuel.jpg" class="circle">
-            <span class="title">Title</span>
-            <p>First Line<br>Second Line</p>
-          </li>
-
-          <li class="collection-item avatar">
-            <img src="./assets/images/immanuel.jpg" class="circle">
-            <span class="title">Title</span>
-            <p>First Line<br>Second Line</p>
-          </li>
-
-          <li class="collection-item avatar">
-            <img src="./assets/images/immanuel.jpg" class="circle">
-            <span class="title">Title</span>
-            <p>First Line<br>Second Line</p>
-          </li>
-        </ul>
-      </div> 
-    </div>
-
-<!----------------------------------------------------------------------------------------- 
--                              TRACKS - Simple list of Text Fields (usage - TBD)
-------------------------------------------------------------------------------------------->
-    <div class="row">
-      <div class="col xl3 l3 m1"></div>
-      <div class="col xl6 l6 m11">
-        <ul class="collection with-header">
-        <li class="collection-header"><h4>Tracks</h4></li>
-        <li class="collection-item">Track 1</li>
-        <li class="collection-item">Track 2</li>
-        <li class="collection-item">Track 3</li>
-        <li class="collection-item">Track 4</li>
-        <li class="collection-item">Track 5</li>
-        <li class="collection-item">Track 6</li>
-        <li class="collection-item">Track 7</li>
-        <li class="collection-item">Track 8</li>
-        <li class="collection-item">Track 9</li>
-        <li class="collection-item">Track 10</li>
-      </ul>
-    </div>
-
-
-    <div class="carousel carousel-slider center">
-
-      <div class="carousel-fixed-item center">
-        <a class="btn waves-effect white grey-text darken-text-2">button</a>
-      </div>
-
-      <div class="carousel-item red white-text" href="#one!">
-        <h2>First Panel</h2>
-        <p class="white-text">This is your first panel</p>
-      </div>
-
-      <div class="carousel-item amber white-text" href="#two!">
-        <h2>Second Panel</h2>
-        <p class="white-text">This is your second panel</p>
-      </div>
-
-      <div class="carousel-item green white-text" href="#three!">
-        <h2>Third Panel</h2>
-        <p class="white-text">This is your third panel</p>
-      </div>
-
-      <div class="carousel-item blue white-text" href="#four!">
-        <h2>Fourth Panel</h2>
-        <p class="white-text">This is your fourth panel</p>
-      </div>
-
-    </div>
-
-    
-<div class="carousel" id="demo-carousel">
- 
-  <a class="carousel-item" href="#one!"><img src="./assets/images/album.png"></a>
-
-  <a class="carousel-item" href="#two!"><img src="./assets/images/harrystyles.png"></a>
-
-  <a class="carousel-item" href="#three!"><img src="./assets/images/manic.png"></a>
-
-  <a class="carousel-item" href="#four!"><img src="./assets/images/beckwith.png"></a>
-
-</div>
 
 </div>
 	<div class="parallax-container">

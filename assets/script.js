@@ -5,7 +5,7 @@
 const clientId = '03d8e475016f40709515ff7168828110';
 const clientSecret = 'a5e76637ec5544bb88cdc130e089668d';
 var token = "";
-var genres = [];
+
 var selectedGenre = "rock"; // needs to be replaced to clicked genre
 var artistID = "";
 var top10ArtistsNames = [];
@@ -13,6 +13,7 @@ var top10ArtistsImages = [];
 var top10ArtistsPopularity = [];
 var top10ArtistsGenre = [];
 var top10ArtistsLink = [];
+
 
 $(document).ready(function(){
     $('.button-collapse').sideNav({
@@ -58,7 +59,7 @@ const _getGenres = async () => {
     });
         
     const data = await result.json();
-    console.log(data.categories.items);
+    //console.log(data.categories.items);
     return data.categories.items;
 }
 
@@ -119,6 +120,7 @@ _getToken();
 /*-----------------------------------------------------------------------------------------------------                        
 -                                           POPULATE HTML                    
 -----------------------------------------------------------------------------------------------------*/
+
 var classicRockDivEl = document.querySelector('#classic-rock-artists');
 var hiphopDivEl = document.querySelector('#hiphop-artists');
 var jazzDivEl = document.querySelector('#jazz-artists');
@@ -139,16 +141,13 @@ var allocateImage = function (img) {
 
 
 
-var clickEventHandler = {
-    
-}
+
 /*-----------------------------------------------------------------------------------------------------                        
--                                           QR Code                    
+-                                           QR Code                
 -----------------------------------------------------------------------------------------------------*/
-document.getElementById('')
 
 //function createQrCode() {
-  var spotifyUrl = ''
+  var spotifyUrl = '"https://open.spotify.com/track/1r9xUipOqoNwggBpENDsvJ"'
   const qrCode = async () => {
     const result = await fetch('http://api.qrserver.com/v1/create-qr-code/?data="' + spotifyUrl + '"!&size=100x100', {
         method: 'GET',
@@ -159,3 +158,10 @@ document.getElementById('')
      document.getElementById("test").src = imgSrc;
   }
   qrCode();
+ 
+
+
+ 
+/*-----------------------------------------------------------------------------------------------------                        
+-                                           GENRE SELECTION                    
+-----------------------------------------------------------------------------------------------------*/
