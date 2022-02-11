@@ -15,7 +15,6 @@ var top10ArtistsPopularity = [];
 var top10ArtistsGenre = [];
 var top10ArtistsLink = [];
 
-
 $(document).ready(function(){
     $('.button-collapse').sideNav({
       menuWidth: 300, // Default is 300
@@ -92,7 +91,7 @@ const _getArtists = async () => {
 
     for (i=0; i<9; i++) {
         allocateImage(top10ArtistsImages[i]);
-       // allocateImageTracks(top10TracksImages[i]);
+       //allocateImageTracks(top10TracksImages[i]);
     }
     
     return data.artists.items;
@@ -121,7 +120,6 @@ const _getAlbums = async () => {
     return data;
 }
 _getToken();
-
 
 /*-----------------------------------------------------------------------------------------------------                        
 -                                           POPULATE HTML                    
@@ -167,12 +165,6 @@ var allocateImageTracks = function (img) {
     trackArr[i].appendChild(imgEl);
     imageCounter++;
 }
-
-
-
-
-
- 
 /*-----------------------------------------------------------------------------------------------------                        
 -                                           GENRE SELECTION                    
 -----------------------------------------------------------------------------------------------------*/
@@ -202,24 +194,22 @@ $('.genre-selection').each(function() {
 
 
 //var rockDivButton = document.querySelector('')
-
 /*-----------------------------------------------------------------------------------------------------                        
 -                                           QR Code                
 -----------------------------------------------------------------------------------------------------*/
 
 //function createQrCode(selectedGenre) 
-  var spotifyUrl = selectedGenre;
-  const qrCode = async () => {
-    const result = await fetch('http://api.qrserver.com/v1/create-qr-code/?data="' + spotifyUrl + '"!&size=100x100', {
-        method: 'GET',
-    });
-    
-    console.log(result.url);
-     var imgSrc = result.url
-     document.getElementById("test").src = imgSrc;
-     
+var spotifyUrl = selectedGenre;
+const qrCode = async () => {
+  const result = await fetch('http://api.qrserver.com/v1/create-qr-code/?data="' + spotifyUrl + '"!&size=100x100', {
+      method: 'GET',
+  });
   
-     
-}
-  qrCode();
+  console.log(result.url);
+   var imgSrc = result.url
+   document.getElementById("test").src = imgSrc;
+   
 
+   
+}
+qrCode();
