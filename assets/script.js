@@ -6,10 +6,11 @@ const clientId = '03d8e475016f40709515ff7168828110';
 const clientSecret = 'a5e76637ec5544bb88cdc130e089668d';
 var token = "";
 
-var selectedGenre = "rock"; // needs to be replaced to clicked genre
+var selectedGenre = "edm"; // needs to be replaced to clicked genre
 var artistID = "";
 var top10ArtistsNames = [];
 var top10ArtistsImages = [];
+var top10TrackImages = [];
 var top10ArtistsPopularity = [];
 var top10ArtistsGenre = [];
 var top10ArtistsLink = [];
@@ -63,7 +64,7 @@ const _getGenres = async () => {
     return data.categories.items;
 }
 
-const _getArtists = async (artistSelected) => {
+const _getArtists = async () => {
 
     const result = await fetch('https://api.spotify.com/v1/search?q=genre:' + selectedGenre +'*&type=artist&market=US&limit=10', {
         method: 'GET',
@@ -82,18 +83,23 @@ const _getArtists = async (artistSelected) => {
         top10ArtistsLink[i] = data.artists.items[i].external_urls.spotify;
         
     }
-    console.log(top10ArtistsNames);   
-    console.log(top10ArtistsImages);
-    console.log(top10ArtistsPopularity);
-    console.log(top10ArtistsGenre);
-    console.log(top10ArtistsLink);
+    //console.log(top10ArtistsNames);   
+    //console.log(top10ArtistsImages);
+    //console.log(top10ArtistsPopularity);
+    //console.log(top10ArtistsGenre);
+    //console.log(top10ArtistsLink);
     await _getTracks();
-    allocateImage(top10ArtistsImages[0]);
+
+    for (i=0; i<9; i++) {
+        allocateImage(top10ArtistsImages[i]);
+       // allocateImageTracks(top10TracksImages[i]);
+    }
+    
     return data.artists.items;
     
 }
 
-const _getTracks = async () => {
+const _getTracks = async (selectedGenre) => {
     const result = await fetch('https://api.spotify.com/v1/search?q=genre:' + selectedGenre + '*&type=track&market=US&limit=10', {
         methid: 'GET',
         headers: {'Authorization' : 'Bearer ' + token},
@@ -121,33 +127,88 @@ _getToken();
 -                                           POPULATE HTML                    
 -----------------------------------------------------------------------------------------------------*/
 
-var classicRockDivEl = document.querySelector('#classic-rock-artists');
-var hiphopDivEl = document.querySelector('#hiphop-artists');
-var jazzDivEl = document.querySelector('#jazz-artists');
-var classicalMusicDivEl = document.querySelector('#classical-music-artists');
-var edmDivEl = document.querySelector('#edm-artists');
-var popDivEl = document.querySelector('#pop-artists');
-var rapDivEl = document.querySelector('#rap-artists');
-var partyDivEl = document.querySelector('#party-artists');
-var alternativeDivEl = document.querySelector('#alternative-artists');
+var artist1 = document.querySelector('#artist1');
+var artist2 = document.querySelector('#artist2');
+var artist3 = document.querySelector('#artist3');
+var artist4 = document.querySelector('#artist4');
+var artist5 = document.querySelector('#artist5');
+var artist6 = document.querySelector('#artist6');
+var artist7 = document.querySelector('#artist7');
+var artist8 = document.querySelector('#artist8');
+var artist9 = document.querySelector('#artist9');
+
+var track1 = document.querySelector('#track1');
+var track2 = document.querySelector('#track2');
+var track3 = document.querySelector('#track3');
+var track4 = document.querySelector('#track4');
+var track5 = document.querySelector('#track5');
+var track6 = document.querySelector('#track6');
+var track7 = document.querySelector('#track7');
+var track8 = document.querySelector('#track8');
+var track9 = document.querySelector('#track9');
+
+var artistArr = [artist1, artist2, artist3, artist4, artist5, artist6, artist7, artist8, artist9];
+var trackArr = [track1, track2, track3, track4, track5, track6, track7, track8, track9];
+
+var imageCounter = 0;
 
 var allocateImage = function (img) {
+
     var imgEl = document.createElement('img');
     imgEl.src = img;
-    console.log(imgEl);
-    classicRockDivEl.appendChild(imgEl);
+    artistArr[i].appendChild(imgEl);
+    imageCounter++;
+}
+
+var allocateImageTracks = function (img) {
+
+    var imgEl = document.createElement('img');
+    imgEl.src = img;
+    trackArr[i].appendChild(imgEl);
+    imageCounter++;
 }
 
 
 
 
 
+ 
+/*-----------------------------------------------------------------------------------------------------                        
+-                                           GENRE SELECTION                    
+-----------------------------------------------------------------------------------------------------*/
+
+
+$('.genre-selection').each(function() {
+    $(".genre-section").on("click", function assignGenre() {
+    selectedGenre = $(this).attr('id');
+    console.log('RIGHT HERE')
+    console.log(selectedGenre);
+    //console.log(this.id);
+    //console.log(this);
+    //_getArtists();
+    });
+})
+
+    // var clickedEl = document.addEventListener('click', function assignGenre() {
+    // selectedGenre = $('.genre-section').attr('id');
+    // console.log(this.id);
+    // console.log(selectedGenre);
+
+    // var currentID = this.id;
+    // console.log(currentID);
+    // $(this).html(currentID);
+
+
+
+
+//var rockDivButton = document.querySelector('')
+
 /*-----------------------------------------------------------------------------------------------------                        
 -                                           QR Code                
 -----------------------------------------------------------------------------------------------------*/
 
-//function createQrCode() {
-  var spotifyUrl = '"https://open.spotify.com/track/1r9xUipOqoNwggBpENDsvJ"'
+//function createQrCode(selectedGenre) 
+  var spotifyUrl = selectedGenre;
   const qrCode = async () => {
     const result = await fetch('http://api.qrserver.com/v1/create-qr-code/?data="' + spotifyUrl + '"!&size=100x100', {
         method: 'GET',
@@ -156,12 +217,9 @@ var allocateImage = function (img) {
     console.log(result.url);
      var imgSrc = result.url
      document.getElementById("test").src = imgSrc;
-  }
+     
+  
+     
+}
   qrCode();
- 
 
-
- 
-/*-----------------------------------------------------------------------------------------------------                        
--                                           GENRE SELECTION                    
------------------------------------------------------------------------------------------------------*/
