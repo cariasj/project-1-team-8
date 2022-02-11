@@ -173,11 +173,12 @@ var allocateImage = function (img) {
 }
 
 var allocateImageTracks = function (img) {
-
+    
     var imgEl = document.createElement('img');
     imgEl.src = img;
     trackArr[i].appendChild(imgEl);
     imageCounter2++;
+    
 }
 
 /*-----------------------------------------------------------------------------------------------------                        
@@ -196,6 +197,7 @@ $('.genre-selection').each(function() {
     _getTracks();
     imageCounter = 0;
     imageCounter2 = 0;
+    
     });
 })
 
