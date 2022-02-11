@@ -1,0 +1,74 @@
+.blue-grey.darken-3 {opacity: .5 }
+.blue-grey.darken-3:hover{opacity: 1 }
+
+.selectgenre {
+    height: 500px;
+}
+.selectgenre h2 {
+    text-align: center;
+}
+.wrapper {
+    margin: auto;
+	width: 290px;
+	perspective: 1000px;
+	position: relative;
+	padding-top: 80px;
+}
+.carrouselwrapper {
+    width: 100%;
+    animation: rotar 30s infinite linear;
+    transform-style: preserve-3d;
+    position: absolute;
+}
+
+.carrouselwrapper:hover {
+    animation-play-state: paused;
+    cursor: pointer;
+}
+
+.carrouselwrapper div {
+    width: 100%;
+	height: 120px;
+	border: 1px solid #3b444b;
+    overflow: hidden;
+    position: absolute;
+}
+
+.carrouselwrapper div:nth-child(1) {
+	transform: rotateY(0deg) translateZ(450px); 
+} .carrouselwrapper div:nth-child(2) {
+	transform: rotateY(40deg) translateZ(450px); 
+} .carrouselwrapper div:nth-child(3) {
+	transform: rotateY(80deg) translateZ(450px); 
+} .carrouselwrapper div:nth-child(4) {
+	transform: rotateY(120deg) translateZ(450px); 
+} .carrouselwrapper div:nth-child(5) {
+	transform: rotateY(160deg) translateZ(450px); 
+} .carrouselwrapper div:nth-child(6) {
+	transform: rotateY(200deg) translateZ(450px); 
+} .carrouselwrapper div:nth-child(7) {
+	transform: rotateY(240deg) translateZ(450px); 
+} .carrouselwrapper div:nth-child(8) {
+	transform: rotateY(280deg) translateZ(450px); 
+} .carrouselwrapper div:nth-child(9) {
+	transform: rotateY(320deg) translateZ(450px); 
+} .carrouselwrapper div:nth-child(10) {
+	transform: rotateY(360deg) translateZ(450px); 
+}
+
+
+@keyframes rotar {
+	from {
+		transform: rotateY(0deg);
+	} to {
+		transform: rotateY(360deg);
+	}
+}
+
+.genrecontainer img {
+	width: 300px;
+	height: 125px;
+
+}.genre-selector {
+	
+}
