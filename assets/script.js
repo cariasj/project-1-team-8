@@ -15,6 +15,8 @@ var top10ArtistsPopularity = [];
 var top10ArtistsGenre = [];
 var top10ArtistsLink = [];
 
+var top10trackImages = [];
+
 $(document).ready(function(){
     $('.button-collapse').sideNav({
       menuWidth: 300, // Default is 300
@@ -48,7 +50,7 @@ const _getToken = async () => {
 //  console.log(data.access_token);
     token = data.access_token;
     _getGenres();
-    _getArtists();
+    // _getArtists();
     }
     
 const _getGenres = async () => {
@@ -87,7 +89,7 @@ const _getArtists = async () => {
     //console.log(top10ArtistsPopularity);
     //console.log(top10ArtistsGenre);
     //console.log(top10ArtistsLink);
-    await _getTracks();
+    
 
     for (i=0; i<9; i++) {
         allocateImage(top10ArtistsImages[i]);
@@ -98,7 +100,7 @@ const _getArtists = async () => {
     
 }
 
-const _getTracks = async (selectedGenre) => {
+const _getTracks = async () => {
     const result = await fetch('https://api.spotify.com/v1/search?q=genre:' + selectedGenre + '*&type=track&market=US&limit=10', {
         methid: 'GET',
         headers: {'Authorization' : 'Bearer ' + token},
@@ -106,6 +108,17 @@ const _getTracks = async (selectedGenre) => {
     });
     const data = await result.json();
     console.log(data.tracks.items);
+
+    for (i=0; i<10; i++) {
+        
+        top10trackImages[i] = data.tracks.items[i].album.images[0].url;
+  
+    }
+
+    for (i=0; i<9; i++) {
+        
+        allocateImageTracks(top10trackImages[i]);
+    }
     return data.tracks.items;
 }
 
@@ -149,6 +162,7 @@ var artistArr = [artist1, artist2, artist3, artist4, artist5, artist6, artist7, 
 var trackArr = [track1, track2, track3, track4, track5, track6, track7, track8, track9];
 
 var imageCounter = 0;
+var imageCounter2 = 0;
 
 var allocateImage = function (img) {
 
@@ -163,7 +177,7 @@ var allocateImageTracks = function (img) {
     var imgEl = document.createElement('img');
     imgEl.src = img;
     trackArr[i].appendChild(imgEl);
-    imageCounter++;
+    imageCounter2++;
 }
 
 /*-----------------------------------------------------------------------------------------------------                        
@@ -178,7 +192,10 @@ $('.genre-selection').each(function() {
     console.log(selectedGenre);
     //console.log(this.id);
     //console.log(this);
-    //_getArtists();
+    _getArtists();
+    _getTracks();
+    imageCounter = 0;
+    imageCounter2 = 0;
     });
 })
 
