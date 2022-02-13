@@ -45,26 +45,10 @@ const _getToken = async () => {
         },
         body: 'grant_type=client_credentials'
     });
-        // console.log(result.access_token);
     const data = await result.json();
-//  console.log(data.access_token);
     token = data.access_token;
-    _getGenres();
-    // _getArtists();
     }
     
-const _getGenres = async () => {
-
-    const result = await fetch(`https://api.spotify.com/v1/browse/categories?locale=sv_US`, {
-        method: 'GET',
-        headers: { 'Authorization' : 'Bearer ' + token}
-    });
-        
-    const data = await result.json();
-    //console.log(data.categories.items);
-    return data.categories.items;
-}
-
 const _getArtists = async () => {
 
     const result = await fetch('https://api.spotify.com/v1/search?q=genre:' + selectedGenre +'*&type=artist&market=US&limit=10', {
@@ -91,9 +75,8 @@ const _getArtists = async () => {
     //console.log(top10ArtistsLink);
     
 
-    for (i=0; i<9; i++) {
+    for (i=0; i<10; i++) {
         allocateImage(top10ArtistsImages[i]);
-       // allocateImageTracks(top10TracksImages[i]);
     }
     
     return data.artists.items;
@@ -115,7 +98,7 @@ const _getTracks = async () => {
   
     }
 
-    for (i=0; i<9; i++) {
+    for (i=0; i<10; i++) {
         
         allocateImageTracks(top10trackImages[i]);
     }
@@ -138,49 +121,42 @@ _getToken();
 -                                           POPULATE HTML                    
 -----------------------------------------------------------------------------------------------------*/
 
-var artist1 = document.querySelector('#artist1');
-var artist2 = document.querySelector('#artist2');
-var artist3 = document.querySelector('#artist3');
-var artist4 = document.querySelector('#artist4');
-var artist5 = document.querySelector('#artist5');
-var artist6 = document.querySelector('#artist6');
-var artist7 = document.querySelector('#artist7');
-var artist8 = document.querySelector('#artist8');
-var artist9 = document.querySelector('#artist9');
+var artist1 = document.querySelector('#a1img');
+var artist2 = document.querySelector('#a2img');
+var artist3 = document.querySelector('#a3img');
+var artist4 = document.querySelector('#a4img');
+var artist5 = document.querySelector('#a5img');
+var artist6 = document.querySelector('#a6img');
+var artist7 = document.querySelector('#a7img');
+var artist8 = document.querySelector('#a8img');
+var artist9 = document.querySelector('#a9img');
+var artist10 = document.querySelector('#a10img');
+var track1 = document.querySelector('#t1img');
+var track2 = document.querySelector('#t2img');
+var track3 = document.querySelector('#t3img');
+var track4 = document.querySelector('#t4img');
+var track5 = document.querySelector('#t5img');
+var track6 = document.querySelector('#t6img');
+var track7 = document.querySelector('#t7img');
+var track8 = document.querySelector('#t8img');
+var track9 = document.querySelector('#t9img');
+var track10 = document.querySelector('#t10img');
 
-var track1 = document.querySelector('#track1');
-var track2 = document.querySelector('#track2');
-var track3 = document.querySelector('#track3');
-var track4 = document.querySelector('#track4');
-var track5 = document.querySelector('#track5');
-var track6 = document.querySelector('#track6');
-var track7 = document.querySelector('#track7');
-var track8 = document.querySelector('#track8');
-var track9 = document.querySelector('#track9');
-
-var artistArr = [artist1, artist2, artist3, artist4, artist5, artist6, artist7, artist8, artist9];
-var trackArr = [track1, track2, track3, track4, track5, track6, track7, track8, track9];
+var artistArr = [artist1, artist2, artist3, artist4, artist5, artist6, artist7, artist8, artist9, artist10];
+var trackArr = [track1, track2, track3, track4, track5, track6, track7, track8, track9, track10];
 
 var imageCounter = 0;
 var imageCounter2 = 0;
 
 var allocateImage = function (img) {
-
-    var imgEl = document.createElement('img');
-    imgEl.src = img;
-    artistArr[i].appendChild(imgEl);
+    artistArr[i].src = img;
     imageCounter++;
 }
 
 var allocateImageTracks = function (img) {
-    
-    var imgEl = document.createElement('img');
-    imgEl.src = img;
-    trackArr[i].appendChild(imgEl);
+    trackArr[i].src = img;
     imageCounter2++;
-    
 }
-
 /*-----------------------------------------------------------------------------------------------------                        
 -                                           GENRE SELECTION                    
 -----------------------------------------------------------------------------------------------------*/
@@ -188,6 +164,7 @@ var allocateImageTracks = function (img) {
 
 $('.genre-selection').each(function() {
     $(".genre-section").on("click", function assignGenre() {
+        $('.tops').css("display", "block");
     selectedGenre = $(this).attr('id');
     console.log('RIGHT HERE')
     console.log(selectedGenre);
@@ -214,3 +191,22 @@ $('.genre-selection').each(function() {
 
 
 //var rockDivButton = document.querySelector('')
+/*-----------------------------------------------------------------------------------------------------                        
+-                                           QR Code                
+-----------------------------------------------------------------------------------------------------*/
+
+//function createQrCode(selectedGenre) 
+var spotifyUrl = selectedGenre;
+const qrCode = async () => {
+  const result = await fetch('http://api.qrserver.com/v1/create-qr-code/?data="' + spotifyUrl + '"!&size=100x100', {
+      method: 'GET',
+  });
+  
+  console.log(result.url);
+   var imgSrc = result.url
+   document.getElementById("test").src = imgSrc;
+   
+
+   
+}
+qrCode();
