@@ -74,7 +74,9 @@ const _getArtists = async () => {
     for (i=0; i<10; i++) {
         allocateImage(top10ArtistsImages[i]);
     }
-    
+    var modalTitleEl = document.createElement('h4');
+    modalTitleEl.textContent = top10ArtistsNames[0];
+    console.log(modalTitleEl);  
     return data.artists.items;
     
 }
@@ -169,6 +171,19 @@ $('.genre-selection').each(function() {
     
     });
 })
+
+
+$('.genre-selection').each(function() {
+    $(".genre-section").on("click", function assignGenre() {
+        $('.tops').css("display", "block");
+    selectedGenre = $(this).attr('id');
+    _getArtists();
+    _getTracks();
+    imageCounter = 0;
+    imageCounter2 = 0;
+    
+    });
+})
 /*-----------------------------------------------------------------------------------------------------                        
 -                                           QR Code                
 -----------------------------------------------------------------------------------------------------*/
@@ -190,6 +205,26 @@ const qrCode = async () => {
 /*-----------------------------------------------------------------------------------------------------                        
 -                                           MODAL               
 -----------------------------------------------------------------------------------------------------*/
+
+
+var fillModal = function() {
+
+var selectedItem = document.querySelector('#modal-1-content');
+var modalNameEl = document.createElement('h3');
+var modalPopEl = document.createElement('p');
+var modalLinkEl = document.createElement('p');
+
+modalNameEl.innerHTML = top10ArtistsNames[0];
+modalPopEl.innerHTML = top10ArtistsPopularity[0];
+modalLinkEl.innerHTML = top10ArtistsLink[0];
+
+
+
+selectedItem.appendChild(modalNameEl, modalPopEl, modalLinkEl);
+console.log(selectedItem);
+
+}
+
 
 
 
