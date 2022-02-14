@@ -7,14 +7,11 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta http-equiv="x-ua-compatible" content="ie=edge">
-   
-    <title>Materialize</title>
-
-  
+    <meta http-equiv="x-ua-compatible" content="ie=edge"> 
+    <script async src="https://kit.fontawesome.com/6cc05e1e8e.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
-   
     <link rel="stylesheet" href="./assets/style.css">
+    <title>Give me Music!</title>
   </head>
 
   <body>
@@ -27,61 +24,120 @@
 
     <div class="had-container">
       <div class="parallax-container prof-user">
-        <div class="parallax"><img src="https://alistapart.com/d/438/fig-6--background-blend-mode.jpg"></div>
-        <div class="row">
-          <div class="col m2 s4 offset-m4 offset-s2 center">
-            <h4 class="truncate bg-card-user">
-          </div>
+        <div class="parallax">
+            <img src="./assets/images/banner.jpg"></img>     
         </div>
       </div>
-    </div>
-
-    <div class="row">
-      <div class="col xl12 l12 m12 s12">
-        <div class="card-panel center orange">
-          <span class="white-text">
-            Give me Music!
-          </span>
-        </div>
-      </div> 
+      
     </div>
 
 <!----------------------------------------------------------------------------------------- 
+-                                       Genre Selector
+------------------------------------------------------------------------------------------->
+<div class="giveme">
+    <h3 class="white-text center">Can’t decide what to listen to? We got you!</h3>
+
+    <p class="white-text center"> Select one of the genres below:</p>
+
+    <div class="row genre-selection">
+
+      <div class="col genre-section" id="rock">
+        <div class="card-panel center genre-selector" >
+          <a><span class="white-text">Rock</span></a>
+        </div>
+      </div> 
+
+      <div class="col genre-section" id="hip hop">
+        <div class="card-panel center genre-selector">
+          <a><span class="white-text">HipHop</span></a>
+        </div>
+      </div> 
+
+      <div class="col genre-section" id="jazz">
+        <div class="card-panel center genre-selector" >
+          <a><span class="white-text">Jazz</span></a>
+        </div>
+      </div> 
+
+      <div class="col genre-section" id="classical">
+        <div class="card-panel center genre-selector" >
+          <a><span class="white-text">Classical</span></a>
+        </div>
+      </div> 
+
+      <div class="col genre-section" id="edm">
+        <div class="card-panel center genre-selector" >
+          <a><span class="white-text">EDM</span></a>
+        </div>
+      </div> 
+
+      <div class="col genre-section" id="pop">
+        <div class="card-panel center genre-selector" >
+          <a><span class="white-text">Pop</span></a>
+        </div>
+      </div> 
+
+      <div class="col genre-section" id="rap">
+        <div class="card-panel center genre-selector">
+          <a><span class="white-text">Rap</span></a>
+        </div>
+      </div> 
+
+      <div class="col genre-section"id="party">
+        <div class="card-panel center genre-selector" >
+          <a><span class="white-text">Party</span></a>
+        </div>
+      </div> 
+
+      <div class="col genre-section"id="alternative">
+        <div class="card-panel center genre-selector" >
+          <a><span class="white-text">Alternative</span></a>
+        </div>
+      </div> 
+    
+
+  </div>  
+</div>
+<!----------------------------------------------------------------------------------------- 
 -                                       Top 10 Artists Carousel 
 ------------------------------------------------------------------------------------------->
+<section class="tops">   
     <section class="selectgenre">
-      <h2>Give Me 10 Artists...</h2>
+      <h2>Give Me the Top 10 Artists</h2>
       <div class="wrapper">
         <div class="carrouselwrapper" id="artistscarousel">
-            <div class="genrecontainer" id="genre1artists">
-                <img src="https://via.placeholder.com/300x125.png" />
-                <p>POP</p>
+
+            <div class="genrecontainer" id="artist1">
+                <img src="" id="a1img">
             </div>
-            <div class="genrecontainer" id="genre2artists">
-                <img src="https://via.placeholder.com/300x125.png" />
-                <p>ROCK</p>
+            <div class="genrecontainer" id="artist2">
+                <img src="" id="a2img">
             </div>
-            <div class="genrecontainer" id="genre3artists">
-                <img src="https://via.placeholder.com/300x125.png" />
+            <div class="genrecontainer" id="artist3">
+                <img src="" id="a3img">
             </div>
-            <div class="genrecontainer" id="genre4artists">
-                <img src="https://via.placeholder.com/300x125.png" />
+            <div class="genrecontainer" id="artist4">
+                <img src="" id="a4img">
             </div>
-            <div class="genrecontainer" id="genre5artists">
-                <img src="https://via.placeholder.com/300x125.png" />
+            <div class="genrecontainer" id="artist5">
+                <img src="" id="a5img">
             </div>
-            <div class="genrecontainer" id="genre6artists">
-                <img src="https://via.placeholder.com/300x125.png" />
+            <div class="genrecontainer" id="artist6">
+                <img src="" id="a6img">
             </div>
-            <div class="genrecontainer" id="genre7artists">
-                <img src="https://via.placeholder.com/300x125.png" />
+            <div class="genrecontainer" id="artist7">
+                <img src="" id="a7img">
             </div>
-            <div class="genrecontainer" id="genre8artists">
-                <img src="https://via.placeholder.com/300x125.png" />
+            <div class="genrecontainer" id="artist8">
+                <img src="" id="a8img">
             </div>
-            <div class="genrecontainer" id="genre9artists">
-                <img src="https://via.placeholder.com/300x125.png" />
+            <div class="genrecontainer" id="artist9">
+                <img src="" id="a9img">
             </div>
+            <div class="genrecontainer" id="artist10">
+                <img src="" id="a10img">
+            </div>
+
         </div>
       </div>
     </section>
@@ -89,216 +145,65 @@
 <!----------------------------------------------------------------------------------------- 
 -                                       Top 10 Tracks Carousel
 ------------------------------------------------------------------------------------------->
+
     <section class="selectgenre">
-      <h2>Give Me 10 Tracks...</h2>
+      <h2>Give Me the Top 10 Tracks</h2>
       <div class="wrapper">
         <div class="carrouselwrapper" id="trackscarousel">
 
-          <div class="genrecontainer" id="genre1tracks">
-              <img src="https://via.placeholder.com/300x125.png" />
-              <p>POP</p>
+          <div class="genrecontainer" id="track1">
+            <img src="" id="t1img">
+             
           </div>
 
-          <div class="genrecontainer" id="genre2tracks">
-              <img src="https://via.placeholder.com/300x125.png" />
-              <p>ROCK</p>
+          <div class="genrecontainer" id="track2">
+            <img src="" id="t2img">
+              
           </div>
 
-          <div class="genrecontainer" id="genre3tracks">
-              <img src="https://via.placeholder.com/300x125.png" />
+          <div class="genrecontainer" id="track3">
+            <img src="" id="t3img">
           </div>
 
-          <div class="genrecontainer" id="genre4tracks">
-              <img src="https://via.placeholder.com/300x125.png" />
+          <div class="genrecontainer" id="track4">
+            <img src="" id="t4img">
           </div>
 
-          <div class="genrecontainer" id="genre5tracks">
-              <img src="https://via.placeholder.com/300x125.png" />
+          <div class="genrecontainer" id="track5">
+            <img src="" id="t5img">
           </div>
 
-          <div class="genrecontainer" id="genre6tracks">
-              <img src="https://via.placeholder.com/300x125.png" />
+          <div class="genrecontainer" id="track6">
+            <img src="" id="t6img">
           </div>
 
-          <div class="genrecontainer" id="genre7tracks">
-              <img src="https://via.placeholder.com/300x125.png" />
+          <div class="genrecontainer" id="track7">
+            <img src="" id="t7img">
           </div>
 
-          <div class="genrecontainer" id="genre8tracks">
-              <img src="https://via.placeholder.com/300x125.png" />
+          <div class="genrecontainer" id="track8">
+            <img src="" id="t8img">
           </div>
 
-          <div class="genrecontainer" id="genre9tracks">
-              <img src="https://via.placeholder.com/300x125.png" />
+          <div class="genrecontainer" id="track9">
+            <img src="" id="t9img"> 
+          </div>
+
+          <div class="genrecontainer" id="track10">
+            <img src="" id="t10img">
           </div>
 
         </div>
       </div>
     </section>
+</section>
 
 <!----------------------------------------------------------------------------------------- 
 -                              MODAL - After clicking ona Carousel Icon
 ------------------------------------------------------------------------------------------->
-
-    <div class="row">
-      <div class="col xl3 l3 m1"></div>
-      <div class="col xl6 l6 m11">
-        <ul class="collection">
-          <li class="collection-item avatar">
-            <img src="./assets/images/cardi.jpg" alt="" class="circle">
-            <span class="title">Title</span>
-            <p>First Line <br>
-            Second Line
-            </p>
-            <a href="#!" class="secondary-content"><i class="material-icons"></i></a>
-          </li>
-
-          <li class="collection-item avatar">
-            <img src="./assets/images/linkinpark.jpg" class="circle">
-            <span class="title">Title</span>
-            <p>First Line<br>Second Line</p>
-            <a href="#!" class="secondary-content"><i class="material-icons"></i></a>
-          </li>
-
-          <li class="collection-item avatar">
-            <img src="./assets/images/immanuel.jpg" class="circle">
-            <span class="title">Title</span>
-            <p>First Line<br>Second Line</p>
-            <a href="#!" class="secondary-content"><i class="material-icons"></i></a>
-          </li>
-
-          <li class="collection-item avatar">
-            <img src="./assets/images/thomasrhett.jpg" class="circle">
-            <span class="title">Title</span>
-            <p>First Line<br>Second Line</p>
-            <a href="#!" class="secondary-content"><i class="material-icons"></i></a>
-          </li>
-
-          <li class="collection-item avatar">
-            <img src="./assets/images/immanuel.jpg" class="circle">
-            <span class="title">Title</span>
-            <p>First Line<br>Second Line</p>
-          </li>
-
-          <li class="collection-item avatar">
-            <img src="./assets/images/immanuel.jpg" class="circle">
-            <span class="title">Title</span>
-            <p>First Line<br>Second Line</p>
-          </li>
-
-          <li class="collection-item avatar">
-            <img src="./assets/images/immanuel.jpg" class="circle">
-            <span class="title">Title</span>
-            <p>First Line<br>Second Line</p>
-          </li>
-
-          <li class="collection-item avatar">
-            <img src="./assets/images/immanuel.jpg" class="circle">
-            <span class="title">Title</span>
-            <p>First Line<br>Second Line</p>
-          </li>
-
-          <li class="collection-item avatar">
-            <img src="./assets/images/immanuel.jpg" class="circle">
-            <span class="title">Title</span>
-            <p>First Line<br>Second Line</p>
-          </li>
-
-          <li class="collection-item avatar">
-            <img src="./assets/images/immanuel.jpg" class="circle">
-            <span class="title">Title</span>
-            <p>First Line<br>Second Line</p>
-          </li>
-        </ul>
-      </div> 
-    </div>
-
-<!----------------------------------------------------------------------------------------- 
--                              TRACKS - Simple list of Text Fields (usage - TBD)
-------------------------------------------------------------------------------------------->
-    <div class="row">
-      <div class="col xl3 l3 m1"></div>
-      <div class="col xl6 l6 m11">
-        <ul class="collection with-header">
-        <li class="collection-header"><h4>Tracks</h4></li>
-        <li class="collection-item">Track 1</li>
-        <li class="collection-item">Track 2</li>
-        <li class="collection-item">Track 3</li>
-        <li class="collection-item">Track 4</li>
-        <li class="collection-item">Track 5</li>
-        <li class="collection-item">Track 6</li>
-        <li class="collection-item">Track 7</li>
-        <li class="collection-item">Track 8</li>
-        <li class="collection-item">Track 9</li>
-        <li class="collection-item">Track 10</li>
-      </ul>
-    </div>
-
-
-    <div class="carousel carousel-slider center">
-
-      <div class="carousel-fixed-item center">
-        <a class="btn waves-effect white grey-text darken-text-2">button</a>
-      </div>
-
-      <div class="carousel-item red white-text" href="#one!">
-        <h2>First Panel</h2>
-        <p class="white-text">This is your first panel</p>
-      </div>
-
-      <div class="carousel-item amber white-text" href="#two!">
-        <h2>Second Panel</h2>
-        <p class="white-text">This is your second panel</p>
-      </div>
-
-      <div class="carousel-item green white-text" href="#three!">
-        <h2>Third Panel</h2>
-        <p class="white-text">This is your third panel</p>
-      </div>
-
-      <div class="carousel-item blue white-text" href="#four!">
-        <h2>Fourth Panel</h2>
-        <p class="white-text">This is your fourth panel</p>
-      </div>
-
-    </div>
-
-    
-<div class="carousel" id="demo-carousel">
- 
-  <a class="carousel-item" href="#one!"><img src="./assets/images/album.png"></a>
-
-  <a class="carousel-item" href="#two!"><img src="./assets/images/harrystyles.png"></a>
-
-  <a class="carousel-item" href="#three!"><img src="./assets/images/manic.png"></a>
-
-  <a class="carousel-item" href="#four!"><img src="./assets/images/beckwith.png"></a>
-
-</div>
-
-</div>
-	<div class="parallax-container">
-      <div class="parallax"><img src="http://materializecss.com/templates/parallax-template/background3.jpg"></div>
-    </div>
-<footer class="page-footer grey darken-4">
-    <div class="footer-copyright">
-        <div class="container center">
-        </div>
-    </div>
-</footer>
-
   
     <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
     <script src="./assets/script.js"></script>
-    <!-- >
- 
-      $(document).ready(function(){
-       
-            $('#demo-carousel').carousel();
-       
-          });
-       
-      </script> --> 
   </body>
 </html>
