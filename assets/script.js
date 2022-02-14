@@ -182,7 +182,8 @@ const qrCode = async () => {
   console.log(result.url);
    var imgSrc = result.url
    document.getElementById("test").src = imgSrc;
-      
+   return imgSrc;
+
 }
 qrCode();
 
@@ -205,6 +206,7 @@ $('#trackscarrousel').each(function() {
 })
 
 $(".modal-close").on("click", function closeModal() {
+    emptyModal();
     $(".modal").css("visibility", "hidden");
     
 });
@@ -220,6 +222,7 @@ var fillModal = function() {
     var modalNameEl = document.createElement('h3');
     var modalPopEl = document.createElement('p');
     var modalLinkEl = document.createElement('p');
+    var modaImgEl = document.createElement('img');
     
     modalNameEl.innerHTML = top10ArtistsNames[0];
     modalPopEl.innerHTML = top10ArtistsPopularity[0];
@@ -232,4 +235,11 @@ var fillModal = function() {
 
 
     selectedItem.appendChild(divEl);
-    }
+}
+
+var emptyModal = function() {
+
+    var selectedItem = document.querySelector('#modal-1-content');
+    selectedItem.innerHTML = '';
+
+}
