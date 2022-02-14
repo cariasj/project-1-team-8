@@ -15,6 +15,7 @@ var top10ArtistsPopularity = [];
 var top10ArtistsGenre = [];
 var top10ArtistsLink = [];
 var top10trackImages = [];
+var top10ArtistsID = [];
 
 
 
@@ -69,6 +70,7 @@ const _getArtists = async () => {
         top10ArtistsPopularity[i] = data.artists.items[i].popularity;
         top10ArtistsGenre[i] = data.artists.items[i].genres[0];
         top10ArtistsLink[i] = data.artists.items[i].external_urls.spotify;
+        top10ArtistsID[i] = data.artists.items[i].id;
         
     }
     for (i=0; i<10; i++) {
@@ -109,6 +111,18 @@ const _getAlbums = async () => {
         header: 'Content-Type : application/json' 
     });
     const data = await result.json();
+    return data;
+}
+
+const _getTopArtistTracks = async () => {
+    const result = await fetch('https://api.spotify.com/v1/artists/' + artistID + '/top-tracks?country=US', {
+        methid: 'GET',
+        headers: {'Authorization' : 'Bearer ' + token},
+        header: 'Content-Type : application/json'
+    });
+    const data = await result.json();
+    console.log('TOP 10 TRACKS DOWN HERE');
+    console.log(data);
     return data;
 }
 _getToken();
@@ -161,12 +175,11 @@ var allocateImageTracks = function (img) {
 $('.genre-selection').each(function() {
     $(".genre-section").on("click", function assignGenre() {
         $('.tops').css("display", "block");
-    selectedGenre = $(this).attr('id');
-    _getArtists();
-    _getTracks();
-    imageCounter = 0;
-    imageCounter2 = 0;
-    
+        selectedGenre = $(this).attr('id');
+        _getArtists();
+        _getTracks();
+        imageCounter = 0;
+        imageCounter2 = 0;
     });
 })
 /*-----------------------------------------------------------------------------------------------------                        
@@ -185,7 +198,7 @@ const qrCode = async () => {
    return imgSrc;
 
 }
-qrCode();
+//qrCode();
 
 
 /*-----------------------------------------------------------------------------------------------------                        
@@ -195,6 +208,19 @@ $('#artistscarrousel').each(function() {
     $(".artistcontainer").on("click", function showArtistModal() {
         $(".modal").css("visibility", "visible");
         fillModal();
+    });
+    $(".artistcontainer").on("click", function generateTrackList() {
+        var selectedArtist = $(this).attr('id');
+        var matches = selectedArtist.match(/(\d+)/);
+        var ArtistLocation = matches[0] - 1;
+        console.log(ArtistLocation);
+        console.log(top10ArtistsNames[ArtistLocation]);
+        console.log(top10ArtistsLink[ArtistLocation]);
+        console.log(top10ArtistsPopularity[ArtistLocation]);
+        console.log(top10ArtistsID[ArtistLocation]);
+        artistID = top10ArtistsID[ArtistLocation];
+        console.log(artistID);
+        _getTopArtistTracks();
     });
 })
 
@@ -210,6 +236,7 @@ $(".modal-close").on("click", function closeModal() {
     $(".modal").css("visibility", "hidden");
     
 });
+
 
 
 var fillModal = function() {
