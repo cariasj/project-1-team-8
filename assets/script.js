@@ -184,7 +184,7 @@ const qrCode = async () => {
    document.getElementById("test").src = imgSrc;
       
 }
-//qrCode();
+qrCode();
 
 
 /*-----------------------------------------------------------------------------------------------------                        
@@ -193,17 +193,43 @@ const qrCode = async () => {
 $('#artistscarrousel').each(function() {
     $(".artistcontainer").on("click", function showArtistModal() {
         $(".modal").css("visibility", "visible");
+        fillModal();
     });
 })
 
 $('#trackscarrousel').each(function() {
     $(".trackcontainer").on("click", function showTrackModal() {
         $(".modal").css("visibility", "visible");
+        fillModal();
     });
 })
 
 $(".modal-close").on("click", function closeModal() {
     $(".modal").css("visibility", "hidden");
+    
 });
 
 
+var fillModal = function() {
+
+    var selectedItem = document.querySelector('#modal-1-content');
+
+    var divEl = document.createElement('div');
+    divEl.className = 'modal-text';
+
+    var modalNameEl = document.createElement('h3');
+    var modalPopEl = document.createElement('p');
+    var modalLinkEl = document.createElement('p');
+    
+    modalNameEl.innerHTML = top10ArtistsNames[0];
+    modalPopEl.innerHTML = top10ArtistsPopularity[0];
+    modalLinkEl.innerHTML = top10ArtistsLink[0];
+    
+   
+    divEl.append(modalNameEl);
+    divEl.append(modalPopEl);
+    divEl.append(modalLinkEl);
+
+
+    selectedItem.appendChild(divEl);
+    }
