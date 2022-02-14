@@ -81,7 +81,7 @@ body {
 }
 .carrouselwrapper {
     width: 80%;
-    animation: rotar 30s infinite linear;
+    animation: rotar 50s infinite linear;
     transform-style: preserve-3d;
     position: absolute;
 }
