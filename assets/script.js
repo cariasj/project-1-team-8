@@ -14,10 +14,13 @@ var top10TrackImages = [];
 var top10ArtistsPopularity = [];
 var top10ArtistsGenre = [];
 var top10ArtistsLink = [];
-
 var top10trackImages = [];
 
+
+
 $(document).ready(function(){
+    $('.modal').modal();
+
     $('.button-collapse').sideNav({
       menuWidth: 300, // Default is 300
       edge: 'left', // Choose the horizontal origin
@@ -25,10 +28,9 @@ $(document).ready(function(){
       draggable: true, // Choose whether you can drag to open on touch screens,
       onOpen: function(el) { /* Do Stuff*/ }, // A function to be called when sideNav is opened
       onClose: function(el) { /* Do Stuff*/ }, // A function to be called when sideNav is closed
-    }
-  );
-      $('.parallax').parallax();
-          $('#demo-carousel').carousel();   
+    });
+    $('.parallax').parallax();
+    $('#demo-carousel').carousel();   
 });
 
 /*-----------------------------------------------------------------------------------------------------                        
@@ -57,6 +59,7 @@ const _getArtists = async () => {
         header: 'Content-Type : application/json' 
     });
     const data = await result.json();
+    console.log("ARTISTS")
     console.log(data.artists.items);
     //artistID = data.artists.items[0].id;
     for (i=0; i<10; i++) {
@@ -68,13 +71,6 @@ const _getArtists = async () => {
         top10ArtistsLink[i] = data.artists.items[i].external_urls.spotify;
         
     }
-    //console.log(top10ArtistsNames);   
-    //console.log(top10ArtistsImages);
-    //console.log(top10ArtistsPopularity);
-    //console.log(top10ArtistsGenre);
-    //console.log(top10ArtistsLink);
-    
-
     for (i=0; i<10; i++) {
         allocateImage(top10ArtistsImages[i]);
     }
@@ -90,6 +86,7 @@ const _getTracks = async () => {
         header: 'Content-Type : application/json' 
     });
     const data = await result.json();
+    console.log("TRACKS");
     console.log(data.tracks.items);
 
     for (i=0; i<10; i++) {
@@ -112,7 +109,6 @@ const _getAlbums = async () => {
         header: 'Content-Type : application/json' 
     });
     const data = await result.json();
-    console.log(data);
     return data;
 }
 _getToken();
@@ -166,10 +162,6 @@ $('.genre-selection').each(function() {
     $(".genre-section").on("click", function assignGenre() {
         $('.tops').css("display", "block");
     selectedGenre = $(this).attr('id');
-    console.log('RIGHT HERE')
-    console.log(selectedGenre);
-    //console.log(this.id);
-    //console.log(this);
     _getArtists();
     _getTracks();
     imageCounter = 0;
@@ -177,20 +169,6 @@ $('.genre-selection').each(function() {
     
     });
 })
-
-    // var clickedEl = document.addEventListener('click', function assignGenre() {
-    // selectedGenre = $('.genre-section').attr('id');
-    // console.log(this.id);
-    // console.log(selectedGenre);
-
-    // var currentID = this.id;
-    // console.log(currentID);
-    // $(this).html(currentID);
-
-
-
-
-//var rockDivButton = document.querySelector('')
 /*-----------------------------------------------------------------------------------------------------                        
 -                                           QR Code                
 -----------------------------------------------------------------------------------------------------*/
@@ -201,12 +179,18 @@ const qrCode = async () => {
   const result = await fetch('http://api.qrserver.com/v1/create-qr-code/?data="' + spotifyUrl + '"!&size=100x100', {
       method: 'GET',
   });
-  
   console.log(result.url);
    var imgSrc = result.url
    document.getElementById("test").src = imgSrc;
-   
-
-   
+      
 }
-qrCode();
+//qrCode();
+
+
+/*-----------------------------------------------------------------------------------------------------                        
+-                                           MODAL               
+-----------------------------------------------------------------------------------------------------*/
+
+
+
+
