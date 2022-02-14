@@ -36,7 +36,7 @@ $(document).ready(function(){
 /*-----------------------------------------------------------------------------------------------------                        
 -                                           FETCH FUNCTIONS                   
 -----------------------------------------------------------------------------------------------------*/
-// Get token from spotify
+
 const _getToken = async () => {
 
     const result = await fetch('https://accounts.spotify.com/api/token', {
@@ -50,7 +50,7 @@ const _getToken = async () => {
     const data = await result.json();
     token = data.access_token;
     }
-// Get the top ten artist from spotify with selected genre
+    
 const _getArtists = async () => {
 
     const result = await fetch('https://api.spotify.com/v1/search?q=genre:' + selectedGenre +'*&type=artist&market=US&limit=10', {
@@ -78,7 +78,7 @@ const _getArtists = async () => {
     return data.artists.items;
     
 }
-// Get top ten tracks from spotify with selected genre
+
 const _getTracks = async () => {
     const result = await fetch('https://api.spotify.com/v1/search?q=genre:' + selectedGenre + '*&type=track&market=US&limit=10', {
         methid: 'GET',
@@ -102,10 +102,21 @@ const _getTracks = async () => {
     return data.tracks.items;
 }
 
+const _getAlbums = async () => {
+    const result = await fetch('https://api.spotify.com/v1/artists/' + artistID + '/albums?market=US&limit=3', {
+        methid: 'GET',
+        headers: {'Authorization' : 'Bearer ' + token},
+        header: 'Content-Type : application/json' 
+    });
+    const data = await result.json();
+    return data;
+}
+_getToken();
+
 /*-----------------------------------------------------------------------------------------------------                        
 -                                           POPULATE HTML                    
 -----------------------------------------------------------------------------------------------------*/
-//Assign elements from the carrousel to variable
+
 var artist1 = document.querySelector('#a1img');
 var artist2 = document.querySelector('#a2img');
 var artist3 = document.querySelector('#a3img');
@@ -126,13 +137,13 @@ var track7 = document.querySelector('#t7img');
 var track8 = document.querySelector('#t8img');
 var track9 = document.querySelector('#t9img');
 var track10 = document.querySelector('#t10img');
-//Save elements variable into an array
+
 var artistArr = [artist1, artist2, artist3, artist4, artist5, artist6, artist7, artist8, artist9, artist10];
 var trackArr = [track1, track2, track3, track4, track5, track6, track7, track8, track9, track10];
 
 var imageCounter = 0;
 var imageCounter2 = 0;
-// Functions to assign src from img tag
+
 var allocateImage = function (img) {
     artistArr[i].src = img;
     imageCounter++;
@@ -146,7 +157,7 @@ var allocateImageTracks = function (img) {
 -                                           GENRE SELECTION                    
 -----------------------------------------------------------------------------------------------------*/
 
-// Get user genre selection
+
 $('.genre-selection').each(function() {
     $(".genre-section").on("click", function assignGenre() {
         $('.tops').css("display", "block");
@@ -179,19 +190,18 @@ const qrCode = async () => {
 /*-----------------------------------------------------------------------------------------------------                        
 -                                           MODAL               
 -----------------------------------------------------------------------------------------------------*/
-// Open modal for clicked elements in artist carrousel
 $('#artistscarrousel').each(function() {
     $(".artistcontainer").on("click", function showArtistModal() {
         $(".modal").css("visibility", "visible");
     });
 })
-// Open modal for clicked elements in track carrousel
+
 $('#trackscarrousel').each(function() {
     $(".trackcontainer").on("click", function showTrackModal() {
         $(".modal").css("visibility", "visible");
     });
 })
-// Close modal for clicked elements in both carrousels
+
 $(".modal-close").on("click", function closeModal() {
     $(".modal").css("visibility", "hidden");
 });
