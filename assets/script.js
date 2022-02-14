@@ -190,7 +190,20 @@ const qrCode = async () => {
 /*-----------------------------------------------------------------------------------------------------                        
 -                                           MODAL               
 -----------------------------------------------------------------------------------------------------*/
+$('#artistscarrousel').each(function() {
+    $(".artistcontainer").on("click", function showArtistModal() {
+        $(".modal").css("visibility", "visible");
+    });
+})
 
+$('#trackscarrousel').each(function() {
+    $(".trackcontainer").on("click", function showTrackModal() {
+        $(".modal").css("visibility", "visible");
+    });
+})
 
+$(".modal-close").on("click", function closeModal() {
+    $(".modal").css("visibility", "hidden");
+});
 
 
