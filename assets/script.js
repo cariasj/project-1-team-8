@@ -18,6 +18,8 @@ var top10trackImages = [];
 var top10ArtistsID = [];
 var modal10Tracks = [];
 var ArtistLocation;
+var modal10TracksUrl = [];
+var top10TrackNames = [];
 
 /*-----------------------------------------------------------------------------------------------------                        
 -                                           POPULATE HTML                    
@@ -131,9 +133,7 @@ const _getArtists = async () => {
     for (i=0; i<10; i++) {
         allocateImage(top10ArtistsImages[i]);
     }
-    
     return data.artists.items;
-    
 }
 
 const _getTracks = async () => {
@@ -144,15 +144,11 @@ const _getTracks = async () => {
     });
     const data = await result.json();
     for (i=0; i<10; i++) {
-        
         top10trackImages[i] = data.tracks.items[i].album.images[0].url;
-  
-    }
-
-    for (i=0; i<10; i++) {
-        
+        top10TrackNames[i] = data.tracks.items[i].name;
         allocateImageTracks(top10trackImages[i]);
     }
+    console.log(top10TrackNames);
     return data.tracks.items;
 }
 
@@ -173,14 +169,11 @@ const _getTopArtistTracks = async () => {
         header: 'Content-Type : application/json'
     });
     const data = await result.json();
-    console.log('RUNS TOP ARTIST TRACKS FETCH');
-
 
     for (i = 0; i <10; i++) {
         modal10Tracks[i] = data.tracks[i].name;
+        modal10TracksUrl[i] = data.tracks[i].external_urls.spotify;
     }
-    
-    console.log(modal10Tracks);
     
     return modal10Tracks;
 }
@@ -210,14 +203,7 @@ $('#artistscarrousel').each(function() {
 
         $(".modal").css("visibility", "visible");
         
-        console.log('modal opens');
     });
-
-    /* $(".artistcontainer").on("click", function showArtistModal() {
-        $(".modal").css("visibility", "visible");   
-    });
-
-     */
 })
 
 // Tracks Carousel - Click Reaction
@@ -225,6 +211,14 @@ $('#artistscarrousel').each(function() {
 $('#trackscarrousel').each(function() {
 
     $(".trackcontainer").on("click", function showTrackModal() {
+        var selectedTrack = $(this).attr('id');
+        var matches = selectedTrack.match(/(\d+)/);
+        TrackLocation = matches[0] - 1;
+        console.log(TrackLocation);
+        console.log(top10TrackNames[TrackLocation]);
+
+
+
         $(".modal").css("visibility", "visible");
         
     });
@@ -242,38 +236,42 @@ $(".modal-close").on("click", function closeModal() {
 
 var fillModal = function(value) {
 
-    console.log(value);
     var selectedItem = document.querySelector('#modal-1-content');    // LOCATES MODAL
 
     var divEl = document.createElement('div');     // CREATES MODAL HEADER
     divEl.className = 'modal-text';                // CLASSIFIES MODAL HEADER
 
-    // APPENDS HEADER CONTENT
+    // APPENDS HEADER CONTENT TO MODAL
     
-    var modalNameEl = document.createElement('h3');   
+    var modalNameEl = document.createElement('h3');
+    modalNameEl.className = '';
     var modalPopEl = document.createElement('p');
-    var modalLinkEl = document.createElement('p');
     
-    
-    modalNameEl.innerHTML = top10ArtistsNames[value];
-    modalPopEl.innerHTML = top10ArtistsPopularity[value];
-    modalLinkEl.innerHTML = top10ArtistsLink[value];
-
+    modalNameEl.innerHTML = 'Artist:  ' + top10ArtistsNames[value];
+    modalPopEl.innerHTML = 'Popularity on Spotify:   ' + top10ArtistsPopularity[value];
     
     divEl.append(modalNameEl);
     divEl.append(modalPopEl);
-    divEl.append(modalLinkEl);
 
     selectedItem.appendChild(divEl);
   
-    // APPENDS TRACK LIST & INFO
-
+    // APPENDS TRACK LIST TO MODAL
+    var j = 1;
     for (i = 0; i < 10; i++) {
+
         var trackNameEl = document.createElement('h4');
+        var modalLinkEl = document.createElement('a');
+
         var trackName = modal10Tracks[i];
-        trackNameEl.innerHTML = trackName;
-        divEl.appendChild(trackNameEl);
-    }  
+        modalLinkEl.href = modal10TracksUrl[i];
+
+        trackNameEl.innerHTML = 'Track ' + j + ':  ' + trackName;
+
+        modalLinkEl.appendChild(trackNameEl);
+        divEl.appendChild(modalLinkEl);
+        j++;
+        
+    }   
 }
 
 var emptyModal = function() {
@@ -283,21 +281,22 @@ var emptyModal = function() {
 
 }
 
-
 /*-----------------------------------------------------------------------------------------------------                        
 -                                           QR Code                
 -----------------------------------------------------------------------------------------------------*/
 
-//function createQrCode(selectedGenre) 
-var spotifyUrl = selectedGenre;
-const qrCode = async () => {
-  const result = await fetch('http://api.qrserver.com/v1/create-qr-code/?data="' + spotifyUrl + '"!&size=100x100', {
-      method: 'GET',
-  });
-  //console.log(result.url);
-   var imgSrc = result.url
-   document.getElementById("test").src = imgSrc;
-   return imgSrc;
+/* //function createQrCode(selectedGenre) 
+var spotifyUrl = "https://open.spotify.com/artist/06HL4z0CvFAxyc27GXpf02";
+const qrCode = async (SpotifyUrl) => {
+    const result = await fetch('http://api.qrserver.com/v1/create-qr-code/?data="' + spotifyUrl + '"!&size=100x100', {
+        method: 'GET',
+    });
+    var imgSrc = result.url
+
+    //document.getElementById("test").src = imgSrc;
+    return imgSrc;
 
 }
-//qrCode();
+//qrCode(spotifyUrl); */
+
+

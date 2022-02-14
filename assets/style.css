@@ -162,7 +162,7 @@ body {
     justify-content: center;
     align-items: center;
     background-color: rgba(0, 0, 0, 0.733);
-    margin-top: -1px;
+    margin-top: 10px;
     animation: zoom 0.3s ease-in-out;
     visibility: hidden;
 }
@@ -197,4 +197,11 @@ body {
 
 .modal-text {
     background-color:white;
+    justify-content: center;
 }
+
+.modal-text h4 {
+    font-size: 18px;
+    justify-content: center;
+}
+
