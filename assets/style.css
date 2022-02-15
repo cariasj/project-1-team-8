@@ -176,8 +176,10 @@ body {
     }
 }
 .modal img {
-    width: 50%;
+    width: 100%;
     object-fit: cover;
+    max-width: 500px;
+    max-height: 300px;
 }
 
 .closeBtn {
@@ -205,3 +207,6 @@ body {
     justify-content: center;
 }
 
+.modal h3 {
+    margin-top: 50px;
+}
