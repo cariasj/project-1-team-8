@@ -20,6 +20,11 @@ var modal10Tracks = [];
 var ArtistLocation;
 var modal10TracksUrl = [];
 var top10TrackNames = [];
+var top10TrackPop = [];
+var top10TrackAlbumName = [];
+var top10TrackReleaseDate = [];
+var top10TrackImg = [];
+var top10TrackByArtist = [];
 
 /*-----------------------------------------------------------------------------------------------------                        
 -                                           POPULATE HTML                    
@@ -146,9 +151,14 @@ const _getTracks = async () => {
     for (i=0; i<10; i++) {
         top10trackImages[i] = data.tracks.items[i].album.images[0].url;
         top10TrackNames[i] = data.tracks.items[i].name;
+        top10TrackPop[i] = data.tracks.items[i].popularity;
+        top10TrackAlbumName[i] = data.tracks.items[i].album.name;
+        top10TrackReleaseDate[i] = data.tracks.items[i].album.release_date;
+        top10TrackImg[i] = data.tracks.items[i].album.images[0].url;
+        top10TrackByArtist[i] = data.tracks.items[i].artists[0].name;
+    
         allocateImageTracks(top10trackImages[i]);
     }
-    console.log(top10TrackNames);
     return data.tracks.items;
 }
 
@@ -210,17 +220,12 @@ $('#artistscarrousel').each(function() {
 
 $('#trackscarrousel').each(function() {
 
-    $(".trackcontainer").on("click", function showTrackModal() {
+    $(".trackcontainer").on("click", async function showTrackModal() {
         var selectedTrack = $(this).attr('id');
         var matches = selectedTrack.match(/(\d+)/);
         TrackLocation = matches[0] - 1;
-        console.log(TrackLocation);
-        console.log(top10TrackNames[TrackLocation]);
-
-
-
+        fillModal2(TrackLocation);
         $(".modal").css("visibility", "visible");
-        
     });
 })
 
@@ -239,21 +244,43 @@ var fillModal = function(value) {
     var selectedItem = document.querySelector('#modal-1-content');    // LOCATES MODAL
 
     var divEl = document.createElement('div');     // CREATES MODAL HEADER
-    divEl.className = 'modal-text';                // CLASSIFIES MODAL HEADER
+    divEl.className = 'modal-text modal-content';                // CLASSIFIES MODAL HEADER
 
     // APPENDS HEADER CONTENT TO MODAL
     
     var modalNameEl = document.createElement('h3');
     modalNameEl.className = '';
-    var modalPopEl = document.createElement('p');
-    
+
+    var PopScore = top10ArtistsPopularity[value];
+    var modalPopEl = document.createElement('div');
+    modalPopEl.className = 'progress';
+
+    var modalPopElTitle = document.createElement('h5');
+    modalPopElTitle = 'Popularity Meter';
+
+    var modalPopEl2 = document.createElement('div');
+    modalPopEl2.className = 'determinate';
+    modalPopEl2.style = 'width: ' + PopScore + '%';
+    modalPopEl2.title = 'Popularity Meter';
+
+    var modalTrackImg = document.createElement('img');
+    modalTrackImg.src = top10ArtistsImages[value];
+
     modalNameEl.innerHTML = 'Artist:  ' + top10ArtistsNames[value];
-    modalPopEl.innerHTML = 'Popularity on Spotify:   ' + top10ArtistsPopularity[value];
+    modalPopElTitle.innerHTML = 'Popularity Meter: ' + PopScore;
     
     divEl.append(modalNameEl);
+    divEl.append(modalPopElTitle);
+    modalPopEl.append(modalPopEl2);
     divEl.append(modalPopEl);
-
+    divEl.append(modalTrackImg);
+    
+    
     selectedItem.appendChild(divEl);
+
+
+    
+    
   
     // APPENDS TRACK LIST TO MODAL
     var j = 1;
@@ -274,19 +301,69 @@ var fillModal = function(value) {
     }   
 }
 
+var fillModal2 = function(value) {
+
+    var selectedItem = document.querySelector('#modal-1-content');    // LOCATES MODAL
+
+    var divEl = document.createElement('div');     // CREATES MODAL HEADER
+    divEl.className = 'modal-text modal-content';                // CLASSIFIES MODAL HEADER
+
+    // APPENDS HEADER CONTENT TO MODAL
+    
+    var modalNameEl = document.createElement('h3');
+    modalNameEl.className = '';
+
+    var PopScore = top10TrackPop[value];
+    var modalPopEl = document.createElement('div');
+    modalPopEl.className = 'progress';
+
+    var modalPopElTitle = document.createElement('h5');
+    modalPopElTitle = 'Popularity Meter:'
+    
+    var modalPopEl2 = document.createElement('div');
+    modalPopEl2.className = 'determinate';
+    modalPopEl2.style = 'width: ' + PopScore + '%';
+    modalPopEl2.title = 'Popularity Meter';
+
+    
+    var modalSongEl = document.createElement('p');
+    var modalAlbumNameEl = document.createElement('p');
+    var modalTrackRelease = document.createElement('p');
+    var modalTrackImg = document.createElement('img');
+   
+
+    modalNameEl.innerHTML = 'Track:  ' + top10TrackNames[value];
+    modalSongEl.innerHTML = 'Artist:  ' + top10TrackByArtist[value];
+    modalAlbumNameEl.innerHTML = 'Album:   ' + top10TrackAlbumName[value]; 
+    modalTrackRelease.innerHTML =  'Release Date:   ' + top10TrackReleaseDate[value];
+    modalTrackImg.src = top10TrackImg[value];
+    
+
+    divEl.append(modalNameEl);
+    divEl.append(modalPopElTitle);
+    modalPopEl.append(modalPopEl2);
+    divEl.append(modalPopEl);
+    divEl.append(modalTrackImg);
+    divEl.append(modalSongEl);
+    divEl.append(modalAlbumNameEl);
+    divEl.append(modalTrackRelease);
+    
+    selectedItem.appendChild(divEl);
+
+}
+
 var emptyModal = function() {
 
     var selectedItem = document.querySelector('#modal-1-content');
     selectedItem.innerHTML = '';
-
 }
 
 /*-----------------------------------------------------------------------------------------------------                        
 -                                           QR Code                
 -----------------------------------------------------------------------------------------------------*/
 
-/* //function createQrCode(selectedGenre) 
-var spotifyUrl = "https://open.spotify.com/artist/06HL4z0CvFAxyc27GXpf02";
+//function createQrCode(selectedGenre) 
+/* var spotifyUrl = "https://open.spotify.com/artist/06HL4z0CvFAxyc27GXpf02";
 const qrCode = async (SpotifyUrl) => {
     const result = await fetch('http://api.qrserver.com/v1/create-qr-code/?data="' + spotifyUrl + '"!&size=100x100', {
         method: 'GET',
@@ -297,6 +374,7 @@ const qrCode = async (SpotifyUrl) => {
     return imgSrc;
 
 }
-//qrCode(spotifyUrl); */
+qrCode(spotifyUrl);
 
 
+ */
